@@ -3,18 +3,17 @@ package web.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import web.entity.Role;
 import web.entity.User;
 import web.repository.RoleDao;
 import web.repository.UserRepository;
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Set;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
-@Transactional
+@Transactional(readOnly = true)
 public class UserServiceImpl implements UserService {
 
     private RoleDao roleDao;
