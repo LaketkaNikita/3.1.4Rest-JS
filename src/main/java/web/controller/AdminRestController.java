@@ -1,14 +1,16 @@
 package web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.ui.Model;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import web.entity.Role;
 import web.entity.User;
 import web.service.RoleService;
 import web.service.UserService;
 
 import java.util.List;
+
 
 
 @RestController
@@ -25,46 +27,33 @@ public class AdminRestController {
     }
 
     @GetMapping("/users")
-    public List<User> getUsers() {
-        List<User> allUsers = userService.getAllUser();
-        return allUsers;
+    public ResponseEntity<List<User>> getUsers() {
+        return new ResponseEntity<>(userService.getAllUser(), HttpStatus.OK);
+    }
+    @GetMapping("/roles")
+    public ResponseEntity<List<Role>> getRoles() {
+        return new ResponseEntity<>(roleService.getAllRoles(), HttpStatus.OK);
     }
 
-    @GetMapping("/new")
-    public String newUser(Model model) {
-        model.addAttribute("roles", roleService.getAllRoles());
-        model.addAttribute("user", new User());
-        return "new";
-    }
-
-    @PostMapping("/api/users")
-    public String createUser(@ModelAttribute("user") User user) {
+    @PostMapping("/users")
+    public User createNewUser(@RequestBody User user) {
         userService.createUser(user);
-        return "redirect:/admin";
+        return user;
     }
 
-    @PutMapping("api/users")
-    public String editUser(Model model, @PathVariable("id") Long id) {
-        model.addAttribute("roles",roleService.getAllRoles());
-        model.addAttribute("user", userService.getUserById(id));
-        return "edit";
+
+    @PutMapping("/users")
+    public void updateUser(@RequestBody User user) {
+        userService.updateUser(user);
     }
 
-    @PatchMapping("/{id}")
-    public String updateUser(@ModelAttribute("user") User user) {
-        userService.createUser(user);
-        return "redirect:/admin";
-    }
-
-    @DeleteMapping("/api/users/{id}")
-    public String deleteUser(@PathVariable("id") Long id) {
+    @DeleteMapping("/users/{id}")
+    public void deleteUser(@PathVariable("id") Long id) {
         userService.delete(id);
-        return "redirect:/admin";
     }
 
-    @GetMapping(value = "api/users/{id}")
-    public String getUserById(@PathVariable Long id, Model model) {
-        model.addAttribute("user", userService.getUserById(id));
-        return "user";
+    @GetMapping( "/users/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable long id) {
+        return new ResponseEntity<>(userService.getUserById(id), HttpStatus.OK);
     }
 }

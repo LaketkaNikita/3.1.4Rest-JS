@@ -16,9 +16,12 @@
 <!--NAGIGATION BAR-->
 
 <div class="container-fluid badge-dark p-3">
-    <p class="d-inline"><strong th:text="${user.getEmail()}"></strong></p>
+    <p class="d-inline"><strong>
+      //  th:text="${user.getEmail()}">
+    </strong></p>
     <p class="d-inline">with roles:</p>
-    <p class="d-inline"><strong th:text="${user.getStringRoles()} + ' USER'"></strong></p>
+    <p class="d-inline"><strong> //th:text="${user.getStringRoles()} + ' USER'"
+    </strong></p>
     <a href="/logout" class="btn btn-dark float-right table-hover-color-red mr-2 fs-1" role="button"
        aria-pressed="false">
         Logout
