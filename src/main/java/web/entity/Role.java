@@ -17,10 +17,6 @@ import java.util.Set;
     @Column(name = "role")
     private String role;
 
-    @ManyToMany(mappedBy = "roles")
-    private Set<User> userSet;
-
-
 
     public Role(String role) {
         this.role = role;
@@ -45,13 +41,6 @@ import java.util.Set;
         this.role = role;
     }
 
-    public Set<User> getUsers() {
-        return userSet;
-    }
-
-    public void setUsers(Set<User> userSet) {
-        this.userSet = userSet;
-    }
 
 
     @Override

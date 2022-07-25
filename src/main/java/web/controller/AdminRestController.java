@@ -27,17 +27,18 @@ public class AdminRestController {
     }
 
     @GetMapping("/users")
-    public ResponseEntity<List<User>> getUsers() {
-        return new ResponseEntity<>(userService.getAllUser(), HttpStatus.OK);
+    public List<User> getUsers() {
+        return userService.getAllUser();
     }
     @GetMapping("/roles")
-    public ResponseEntity<List<Role>> getRoles() {
-        return new ResponseEntity<>(roleService.getAllRoles(), HttpStatus.OK);
+    public List<Role> getRoles() {
+        return roleService.getAllRoles();
     }
 
     @PostMapping("/users")
-    public ResponseEntity<User> createNewUser(@RequestBody User user) {
-        return new ResponseEntity<>(userService.createUser(user), HttpStatus.OK);
+    public User createNewUser(@RequestBody User user) {
+        userService.createUser(user);
+        return user;
     }
 
 
@@ -51,8 +52,5 @@ public class AdminRestController {
         userService.delete(id);
     }
 
-    @GetMapping( "/users/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable long id) {
-        return new ResponseEntity<>(userService.getUserById(id), HttpStatus.OK);
-    }
+
 }
