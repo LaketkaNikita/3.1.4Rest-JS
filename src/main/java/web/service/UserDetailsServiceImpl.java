@@ -11,7 +11,7 @@ import web.repository.UserRepository;
 
 
 @Service
-@Transactional(readOnly = true)
+@Transactional
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     private final UserRepository userRepository;

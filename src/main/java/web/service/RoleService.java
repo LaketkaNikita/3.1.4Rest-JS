@@ -10,4 +10,5 @@ public interface RoleService {
 
 
 
+    void save(Role user);
 }
