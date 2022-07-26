@@ -11,6 +11,7 @@
     <!— Bootstrap CSS —>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
           integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 </head>
 <body>
 <!--NAGIGATION BAR-->
@@ -97,14 +98,12 @@
                                             </td>
                                             <td>
                                                 <button type="button" class="btn btn-primary" data-toggle="modal"
-                                                        data-target="#exampleModal"
-                                                        th:attrappend="data-target=${user.id}">
+                                                        data-target="#exampleModal">
                                                     Edit
                                                 </button>
                                                 <!--Modal Body Edit-->
                                                 <div class="modal fade" id="exampleModal" tabindex="-1"
-                                                     aria-labelledby="exampleModalLabel" aria-hidden="true"
-                                                     th:attrappend="id=${user.id}">
+                                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
@@ -117,9 +116,7 @@
                                                             </div>
                                                             <!— Modal body-->
                                                             <div class="modal-body">
-                                                                <form action="#" th:method="PATCH"
-                                                                      th:action="@{/admin/{id}(id=${user.getId()})}"
-                                                                      th:object="${user}">
+                                                                <form>
                                                                     <div class="form-group text-center">
                                                                         <label class="center-block">
                                                                             <span class="font-weight-bold">ID</span>
@@ -179,14 +176,7 @@
 
                                                                         <div>
                                                                             <select multiple class="custom-select"
-                                                                                    id="roleModalForm"
-                                                                                    th:size="${roles.size()}"
-                                                                                    th:name="roles">
-                                                                                <th:block th:each="role : ${roles}">
-                                                                                    <option th:value="${role.getId()}"
-                                                                                            th:text="${role.getRole()}"
-                                                                                            th:selected="${user.getRoles().contains(role)}"></option>
-                                                                                </th:block>
+                                                                                    id="roleModalForm">
                                                                             </select>
                                                                         </div>
                                                                     </div>
@@ -229,9 +219,7 @@
                                                             </div>
                                                             <!— Modal body-->
                                                             <div class="modal-body">
-                                                                <form action="#" th:method="DELETE"
-                                                                      th:action="@{/admin/{id}(id=${user.getId()})}"
-                                                                      th:object="${user}">
+                                                                <form>
                                                                     <div class="form-group text-center">
                                                                         <label class="center-block">
                                                                             <span class="font-weight-bold">ID</span>
@@ -284,14 +272,7 @@
 
                                                                         <div>
                                                                             <select multiple class="custom-select"
-                                                                                    id="DeleteRoleModalForm"
-                                                                                    th:size="${roles.size()}"
-                                                                                    th:name="roles">
-                                                                                <th:block th:each="role : ${roles}">
-                                                                                    <option th:value="${role.getId()}"
-                                                                                            th:text="${role.getRole()}"
-                                                                                            th:selected="${user.getRoles().contains(role)}"></option>
-                                                                                </th:block>
+                                                                                    id="DeleteRoleModalForm">
                                                                             </select>
                                                                         </div>
                                                                     </div>
@@ -327,7 +308,7 @@
                                     <div class="modal-body line-height-07 col-sm-6 offset-3">
                                         <div class="col-4">
                                         </div>
-                                        <form th:method="POST" th:action="@{/admin/new}">
+                                        <form>
                                             <div class="form-group text-center">
                                                 <label for="firstNameField"><strong>First name</strong></label>
                                                 <input name="name" type="text" class="form-control" id="firstNameField"
@@ -359,11 +340,8 @@
 
                                             <div class="form-group text-center">
                                                 <label for="roleForm"><strong>Role</strong></label>
-                                                <select multiple class="custom-select" id="roleForm"
-                                                        th:size="${roles.size()}" th:name="roles">
-                                                    <th:block th:each="role : ${roles}">
-                                                        <option th:value="${role.id}" th:text="${role.role}"></option>
-                                                    </th:block>
+                                                <select multiple class="custom-select" id="roleForm">
+
                                                 </select>
                                             </div>
 
@@ -403,23 +381,22 @@
                             <tbody>
                             <tr>
                                 <td>
-                                    <form th:text="${user.getId()}"></form>
+                                    <form ></form>
                                 </td>
                                 <td>
-                                    <form th:text="${user.getName()}"></form>
+                                    <form ></form>
                                 </td>
                                 <td>
-                                    <form th:text="${user.getLastname()}"></form>
+                                    <form ></form>
                                 </td>
                                 <td>
-                                    <form th:text="${user.getAge()}"></form>
+                                    <form></form>
                                 </td>
                                 <td>
-                                    <form th:text="${user.getEmail()}"></form>
+                                    <form ></form>
                                 </td>
                                 <td>
-                                    <form class="d-inline" th:each="roleUser : ${user.getRoles()}"
-                                          th:text="${roleUser} + ' '"></form>
+                                    <form class="d-inline"></form>
                                 </td>
                             </tr>
                             </tbody>
@@ -444,5 +421,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
         integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
+<script src="main.js"></script>
 </body>
 </html>

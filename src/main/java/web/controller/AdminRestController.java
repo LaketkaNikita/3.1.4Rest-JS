@@ -3,6 +3,8 @@ package web.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import web.entity.Role;
 import web.entity.User;
@@ -25,6 +27,7 @@ public class AdminRestController {
         this.userService = userService;
         this.roleService = roleService;
     }
+
 
     @GetMapping("/users")
     public List<User> getUsers() {
