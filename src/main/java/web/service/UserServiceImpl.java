@@ -8,12 +8,13 @@ import web.entity.User;
 import web.repository.RoleDao;
 import web.repository.UserRepository;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
-@Transactional(readOnly = true)
+@Transactional
 public class UserServiceImpl implements UserService {
 
     private RoleDao roleDao;
@@ -34,13 +35,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getAllUser() {
-        return userRepository.findAll();
+    public Set<User> getAllUser() {
+        return userRepository.getAllUsers();
     }
 
     @Override
-    public User getUserById(long id) {
-        return userRepository.getById(id);
+    public Optional<User> findByLogin(String login) {
+        return userRepository.findByLogin(login);
     }
 
 
@@ -57,20 +58,6 @@ public class UserServiceImpl implements UserService {
         userRepository.deleteById(id);
     }
 
-    @Override
-    public Set<Role> getAllRoles() {
-        return roleDao.getAllRoles();
-    }
-
-    @Override
-    public Role getRoleByName(String name) {
-        return roleDao.getRoleByName(name);
-    }
-
-    @Override
-    public Set<Role> getRolesByNames(String[] names) {
-        return roleDao.getRolesByNames(names);
-    }
 
 
 }

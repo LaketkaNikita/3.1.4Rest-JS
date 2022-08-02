@@ -12,7 +12,7 @@ import web.service.RoleService;
 import web.service.UserService;
 
 import java.util.List;
-
+import java.util.Set;
 
 
 @RestController
@@ -30,7 +30,7 @@ public class AdminRestController {
 
 
     @GetMapping("/users")
-    public List<User> getUsers() {
+    public Set<User> getUsers() {
         return userService.getAllUser();
     }
     @GetMapping("/roles")

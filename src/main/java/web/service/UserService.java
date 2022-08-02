@@ -3,15 +3,14 @@ package web.service;
 import web.entity.Role;
 import web.entity.User;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 public interface UserService {
-    List<User> getAllUser();
-    User getUserById(long id);
+    Set<User> getAllUser();
+    Optional<User> findByLogin(String login);
     void createUser(User user);
     void updateUser(User user);
     void delete(long id);
-    Set<Role> getAllRoles();
-    Role getRoleByName(String name);
-    Set<Role> getRolesByNames(String[] names);
+
 }
