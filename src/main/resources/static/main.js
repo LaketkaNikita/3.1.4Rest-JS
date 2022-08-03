@@ -49,7 +49,7 @@ function pressEdit(el) {
     let id = idStr.slice(7);
     allUsers.forEach(user => {
             if (user.id == id) {
-                // user1 = u;
+
                 console.log(user);
                 document.getElementById("idModalField").value = user.id;
                 document.getElementById("firstNameModalField").value = user.name;

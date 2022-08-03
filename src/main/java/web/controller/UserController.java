@@ -1,5 +1,7 @@
 package web.controller;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -7,6 +9,7 @@ import web.entity.User;
 import web.service.UserService;
 
 import java.security.Principal;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 
@@ -17,13 +20,14 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/api/user")
-    @ResponseBody
-    public Optional<User> userPage(Principal user) {
-        return userService.findByLogin(user.getName());
-    }
     @GetMapping("/user")
     public String userPage() {
         return "user";
+    }
+
+    @GetMapping("/api/user")
+    @ResponseBody
+    public ResponseEntity<User> userPage(Principal user) {
+        return new ResponseEntity<>(userService.findByLogin(user.getName()).get(), HttpStatus.OK);
     }
 }

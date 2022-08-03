@@ -10,7 +10,7 @@ import java.util.Set;
 
 
 public interface UserRepository extends JpaRepository <User, Long> {
-    @Query(value="from User u join fetch u.roles where u.email = ?1 ")
+    @Query(value = "from User u join fetch u.roles where u.email = ?1")
     Optional<User> findByLogin(String login);
 
     @Query(value = "from User u join fetch u.roles order by u.id")
