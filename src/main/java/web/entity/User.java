@@ -30,7 +30,7 @@ public class User implements UserDetails {
     @Column(name = "age")
     private int age;
 
-    @Column(name = "email")
+    @Column(name = "email",unique = true, nullable = false)
     private String email;
 
     @Column(name = "password")
@@ -108,7 +108,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return name;
+        return getEmail();
     }
 
     public void setPassword(String password) {

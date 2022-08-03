@@ -16,18 +16,7 @@
 
 </head>
 <body>
-<!--NAGIGATION BAR-->
-
-<div class="container-fluid badge-dark p-3">
-    <strong><p class="d-inline" id="titleString"></p></strong>
-    <p class="d-inline">with roles:</p>
-    <p class="d-inline"><strong></strong></p>
-    <a href="/logout" class="btn btn-dark float-right table-hover-color-red mr-2 fs-1" role="button"
-       aria-pressed="false">
-        Logout
-    </a>
-</div>
-
+<div th:insert="header :: header"></div>
 <div class="container-fluid">
     <div class="row">
         <!— конец NAGIGATION BAR-->
