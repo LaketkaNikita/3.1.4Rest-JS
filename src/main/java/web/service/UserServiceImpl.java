@@ -3,11 +3,8 @@ package web.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import web.entity.Role;
 import web.entity.User;
-import web.repository.RoleDao;
 import web.repository.UserRepository;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class UserServiceImpl implements UserService {
 
-    private RoleDao roleDao;
+
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
