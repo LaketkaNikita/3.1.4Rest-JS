@@ -9,19 +9,15 @@ import java.util.List;
 
 @Service
 public class RoleServiceImpl implements RoleService{
-
     private RoleRepository roleRepository;
-
     @Autowired
     public RoleServiceImpl(RoleRepository roleRepository) {
         this.roleRepository = roleRepository;
     }
-
     @Override
     public List<Role> getAllRoles() {
         return roleRepository.findAll();
     }
-
     @Override
     public void save(Role role) {
         roleRepository.save(role);

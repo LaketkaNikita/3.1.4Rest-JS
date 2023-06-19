@@ -18,21 +18,17 @@ import java.util.Optional;
 @Service
 @Transactional
 public class UserDetailsServiceImpl implements UserDetailsService {
-
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
-
-
-
     public UserDetailsServiceImpl(UserRepository userRepository, RoleRepository roleRepository) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
     }
-
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         if (login.equals("ADMIN")) {
-        User user = new User("root","root", 3, "root@root.com", new BCryptPasswordEncoder().encode("root"));
+        User user = new User("root","root",
+                3, "root@root.com", new BCryptPasswordEncoder().encode("root"));
             if (userRepository.findByLogin("ADMIN").isEmpty()) {
                 user.setRoles(new HashSet<>(roleRepository.findAll()));
                 userRepository.save(user);

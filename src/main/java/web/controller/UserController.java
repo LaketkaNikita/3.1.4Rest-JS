@@ -22,9 +22,8 @@ public class UserController {
 
     @GetMapping("/user")
     public String userPage() {
-        return "user";
+        return "index";
     }
-
     @GetMapping("/api/user")
     @ResponseBody
     public ResponseEntity<User> userPage(Principal user) {
