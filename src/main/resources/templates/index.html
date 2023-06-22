@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
@@ -39,20 +40,58 @@
             display: none;
             font-size: 18px; /* Increased font size */
         }
+        /* Custom styles for the navbar */
+        .navbar {
+            background-color: #f8f9fa; /* Light grey background */
+            border-bottom: 2px solid #333; /* Add border at the bottom */
+        }
+        .dropdown-menu {
+            left: auto; /* Align the dropdown to the left */
+            right: 0; /* Align the dropdown to the right edge */
+        }
     </style>
 </head>
 <body>
-<div th:insert="header :: header"></div>
+<!-- Navigation bar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Welcome</a>
+
+    <!-- User information panel -->
+    <div th:insert="header :: header" id="headerFragment"></div>
+
+    <!-- Dropdown menu -->
+    <div class="dropdown ml-auto dropleft">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Menu
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">Language</a>
+            <a class="dropdown-item" href="/support.html">Help</a>
+            <a class="dropdown-item" href="/logout">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Upload area -->
 <div class="container-fluid">
     <div class="row">
         <div class="center">
-            <div id="upload-area">Нажмите или перетащите файл</div>
-            <button id="download-btn">Скачать сжатый файл</button>
+            <div id="upload-area">Click or drag the file</div>
+            <button id="download-btn">Download a compressed file</button>
             <input type="file" id="file-input" style="display: none;">
         </div>
     </div>
 </div>
-</div>
+
+<!-- JS for Bootstrap -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<!-- Custom JS -->
+<script src="/path-to-your-js/header.js"></script>
+
+<!-- Inline JS -->
 <script>
     var uploadArea = document.getElementById('upload-area');
     var fileInput = document.getElementById('file-input');
@@ -108,10 +147,10 @@
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);
-                uploadArea.textContent = 'Загружено: ' + file.name;
+                uploadArea.textContent = 'Loaded: ' + file.name;
                 uploadArea.style.backgroundColor = '#00FF00';
             }).catch(() => {
-            uploadArea.textContent = 'Ошибка загрузки: ' + file.name;
+            uploadArea.textContent = 'Loading error: ' + file.name;
             uploadArea.style.backgroundColor = '#FF0000';
         });
     }
