@@ -17,10 +17,10 @@ public class AdminController {
     }
     @GetMapping
     public String indexView() {
-        return "index";
+        return "editPage";
     }
     @GetMapping("/admin")
     public String userView() {
-        return "index";
+        return "editPage";
     }
 }

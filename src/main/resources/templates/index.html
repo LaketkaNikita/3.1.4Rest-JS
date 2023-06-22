@@ -1,6 +1,13 @@
 <html>
 <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+          integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/style.css">
     <style>
+        body {
+            background-color: #F5F5DC; /* Beige background */
+            font-family: Arial, sans-serif; /* Set font to Arial */
+        }
         .center {
             display: flex;
             justify-content: center;
@@ -8,32 +15,43 @@
             height: 100vh;
             flex-direction: column;
         }
+        .row {
+            display: flex;
+            justify-content: center; /* Center horizontally */
+        }
         #upload-area {
-            width: 200px;
-            height: 100px;
-            border: 2px dashed #ccc;
-            line-height: 100px;
+            width: 250px; /* Increased width */
+            height: 120px; /* Increased height */
+            line-height: 120px; /* Adjusted line height */
             text-align: center;
             color: #ccc;
             cursor: pointer;
-            background-color: #0000FF;
+            background-color: #0000FF; /* Blue background */
             color: #FFFFFF;
+            border-radius: 15px; /* Rounded corners */
         }
         #download-btn {
             margin-top: 20px;
-            padding: 10px;
+            padding: 15px; /* Increased padding */
             border: none;
             background-color: #00FF00;
             color: #FFFFFF;
             display: none;
+            font-size: 18px; /* Increased font size */
         }
     </style>
 </head>
 <body>
-<div class="center">
-    <div id="upload-area">Нажмите или перетащите файл сюда</div>
-    <button id="download-btn">Скачать сжатый файл</button>
-    <input type="file" id="file-input" style="display: none;">
+<div th:insert="header :: header"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="center">
+            <div id="upload-area">Нажмите или перетащите файл</div>
+            <button id="download-btn">Скачать сжатый файл</button>
+            <input type="file" id="file-input" style="display: none;">
+        </div>
+    </div>
+</div>
 </div>
 <script>
     var uploadArea = document.getElementById('upload-area');
@@ -99,4 +117,4 @@
     }
 </script>
 </body>
-</html>"
+</html>
