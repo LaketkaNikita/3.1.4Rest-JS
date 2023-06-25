@@ -74,7 +74,7 @@ public class FileConverterServiceImpl implements FileConverterService {
         String tempDirectory = System.getProperty("java.io.tmpdir");
         File output = new File(tempDirectory + File.separator + nameWithoutExtension + "_" + UUID.randomUUID().toString() + "." + extension);
 
-        ProcessBuilder pb = new ProcessBuilder("ffmpeg", "-i", input.getAbsolutePath(), "-vcodec", "libx264", "-b:v", "1000k", "-acodec", "mp3", output.getAbsolutePath());
+        ProcessBuilder pb = new ProcessBuilder("ffmpeg", "-i", input.getAbsolutePath(), "-vcodec", "libaom-av1", "-b:v", "800k", "-strict", "experimental", "-acodec", "opus", output.getAbsolutePath());
         Process p = pb.start();
 
         try {
